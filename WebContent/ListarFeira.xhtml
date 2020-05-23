@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet library="css" name="file.css" />
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+</h:head>
+
+<h:body id="body">
+
+	<h:form>
+		<p:panel header="Pesquisar">
+			<h:panelGrid id="gridCampos" style="width: 100%">
+
+					<p:commandButton value="Atualizar" update="@form" />
+
+					<p:commandButton value="Nova Lista" update="@form"
+						actionListener="#{FeiraBean.abrirManterFeira}" />
+
+			</h:panelGrid>
+		</p:panel>
+
+		<p:panel header="Listas de Compras" style="margin-bottom:20px; width: 100%">
+			<p:dataTable var="listaCompras" value="#{FeiraBean.feira}">
+				
+								
+				<p:column headerText="Nome">
+				<p:outputLabel value="#{FeiraBean.feira.nome}"/>
+				</p:column>
+				
+				<p:column headerText="Data">
+				<p:outputLabel value="#{FeiraBean.feira.data}"/>
+				</p:column>
+				
+				<p:column headerText="Obsrvação">
+				<p:outputLabel value="#{FeiraBean.feira.observacao}"/>
+				</p:column>
+				
+
+				<p:column headerText="Editar" width="15%">
+					<p:commandButton icon="pi pi-pencil">
+						<f:setPropertyActionListener target="#{FeiraBean.id}"
+							value="#{feira.id}" />
+					</p:commandButton>
+				</p:column>
+				<p:column headerText="Remover" width="15%">
+					<p:commandButton icon="pi pi-times" updta="@form">
+						<f:setPropertyActionListener target="#{FeiraBean.id}"
+							value="#{feira.id}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+		</p:panel>
+	</h:form>
+
+</h:body>
+</html>

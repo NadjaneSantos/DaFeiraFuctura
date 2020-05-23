@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet library="css" name="file.css" />
+</h:head>
+
+<h:body id="body">
+	<p:graphicImage library="images" name="bgLogin.jpg" width="100"
+		margin-left="auto" margin-right="auto" />
+	<h1 id="h1">Cadastro de usuário</h1>
+	<div id="quadro">
+		<h:form>
+
+			<h:panelGrid>
+
+				<p:row>
+					<p:column style="width:400px">
+						<h:outputLabel value="Nome:" />
+					</p:column>
+					<p:column colspan="2">
+						<p:inputText placeholder="Digite seu nome" required="true"
+							requiredMessage="Insira o Nome"
+							value="#{UsuarioBean.usuario.nome}" />
+					</p:column>
+				</p:row>
+
+				<p:column>
+					<h:outputLabel value="Email:" />
+					<p:inputText placeholder="Digite seu email" required="true"
+						requiredMessage="Insira o Email"
+						value="#{UsuarioBean.usuario.email}" />
+				</p:column>
+
+				<p:column>
+					<h:outputLabel value="Senha:" />
+					<p:password id="senha" placeholder="Digite sua senha"
+						required="true" requiredMessage="Insira a Senha"
+						value="#{UsuarioBean.usuario.senha}" />
+				</p:column>
+
+				<p:column>
+					<h:commandButton value="Salvar"
+						actionListener="#{UsuarioBean.salvar}" />
+				</p:column>
+
+				<h:outputLabel value="#{UsuarioBean.msg}"
+					style="color: red; font-weight: bold" />
+
+			</h:panelGrid>
+
+		</h:form>
+	</div>
+	<h:outputText />
+</h:body>
+</html>

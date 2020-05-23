@@ -1,0 +1,102 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet library="css" name="file.css" />
+</h:head>
+<title>Lista da Feira</title>
+<h:body id="body">
+
+	<h:form>
+
+		<p:panel header="Lista da Feira">
+			<p:panelGrid style="width: 100%">
+
+
+				<h:outputLabel value="Nome: " style="width:125px" />
+
+				<p:inputText value="#{FeiraBean.feira.nome}" />
+
+
+				<h:outputLabel value="Data: " style="width:125px" />
+				<p:inputText value="#{FeiraBean.feira.data}" />
+
+				<h:outputLabel value="Observação: " style="width:125px" />
+				<p:inputText value="#{FeiraBean.feira.observacao}" />
+
+
+			</p:panelGrid>
+		</p:panel>
+
+		<p:layout style="min-width:300px;min-height:400px;">
+			<p:layoutUnit position="west" size="400" minSize="50" maxSize="500">
+
+
+				<p:panel header="Itens">
+
+					<p:panelGrid columns="2">
+				
+						<h:outputLabel value="Quantidade: " />
+						<p:inputText size="3"
+							value="#{FeiraBean.itemFeiraAdicionar.quantidade}" />
+
+						<h:outputLabel value="Unidade: " />
+						<p:selectOneMenu style="width:125px"
+							value="#{FeiraBean.itemFeiraAdicionar.unidade}">
+							<f:selectItem itemLabel="" />
+							<f:selectItem itemLabel="Pacote" itemValue="Pacote" />
+							<f:selectItem itemLabel="Grama" itemValue="grama" />
+							<f:selectItem itemLabel="Litro" itemValue="Litro" />
+							<f:selectItem itemLabel="Kilo" itemValue="kilo" />
+							<f:selectItem itemLabel="lata" itemValue="Lata" />
+							<f:selectItem itemLabel="Garrafa" itemValue="Garrafa" />
+							<f:selectItem itemLabel="Unidade" itemValue="Unidade" />
+						</p:selectOneMenu>
+
+						<h:outputLabel value="Nome: " />
+						<p:inputText size="15"
+							value="#{FeiraBean.itemFeiraAdicionar.nome}" />
+
+
+						<p:commandButton value="Adicionar" update="itens"
+							actionListener="#{ReceitaBean.adicionarItem}" />
+					</p:panelGrid>
+				</p:panel>
+
+
+
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center">
+
+				<p:dataTable id="itens" var="item"
+					value="#{FeiraBean.itemFeiraAdicionar}">
+					<p:column headerText="Quantidade">
+						<h:outputText value="#{itemFeiraAdicionar.Quantidade}" size="3"/>
+					</p:column>
+					<p:column headerText="Unidade">
+						<h:outputText value="#{itemFeiraAdicionar.unidade}" />
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{itemFeiraAdicionar.ingrediente}" size="15"/>
+					</p:column>
+				</p:dataTable>
+
+			</p:layoutUnit>
+		</p:layout>
+
+		<p:column colspan="2">
+			<p:commandButton value="Salvar" update="@form"
+				actionListener="#{FeiraBean.salvarFeira}" />
+		</p:column>
+		<p:column>
+			<p:commandButton value="Limpar" update="@form"
+				style="margin-right:20px;" actionListener="#{ReceitaBean.limpar}" />
+		</p:column>
+
+	</h:form>
+
+</h:body>
+</html>

@@ -1,0 +1,112 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet library="css" name="file.css" />
+</h:head>
+
+<h:body id="body">
+
+	<p:graphicImage library="images" name="bgLogin.jpg" width="100"
+		margin-left="auto" margin-right="auto" />
+
+	<h1 id="h1">Receitaria</h1>
+
+
+	<h:form>
+		<p:panel header="Pesquisar">
+			<h:panelGrid id="gridCampos" style="width: 100%">
+				<p:row>
+
+					<h:outputLabel value="Título: " />
+					<p:inputText value="#{ReceitaBean.receita.titulo}" />
+
+				</p:row>
+				<p:row>
+
+					<h:outputLabel value="Categoria: " />
+					<p:inputText value="#{ReceitaBean.receita.categoria}" />
+
+				</p:row>
+				<p:row>
+
+					<h:outputLabel value="Profissional: " />
+					<p:inputText value="#{ReceitaBean.profissional.nome}" />
+
+				</p:row>
+
+				<p:row>
+
+					<h:outputLabel value="Ingrediente: " />
+					<p:inputText value="#{ReceitaBean.ingrediente.ingrediente}" />
+
+				</p:row>
+
+				<p:row>
+
+					<p:commandButton value="Pesquisar" update="@form" />
+
+					<p:commandButton value="Atualizar" update="@form"
+						actionListener="#{ReceitaBean.abrirPesquisarReceita}" />
+
+					<p:commandButton value="Limpar" update="@form" process="@this"
+						actionListener="#{ReceitaBean.limpar}">
+						<p:resetInput target="gridCampos" />
+					</p:commandButton>
+
+					<p:commandButton value="Add Receita" update="@form"
+						actionListener="#{ReceitaBean.abrirManterReceita}" />
+
+
+				</p:row>
+			</h:panelGrid>
+		</p:panel>
+
+		<p:panel header="Receitas" style="margin-bottom:20px; width: 100%">
+			<p:dataTable var="receita" value="#{ReceitaBean.listaReceitas}">
+				<p:column headerText="Detalhe">
+					<p:commandButton icon="pi pi-search">
+						<!--  <f:setPropertyActionListener  />-->
+					</p:commandButton>
+				</p:column>
+				<p:column headerText="Título">
+					<h:outputText value="#{receita.titulo}" />
+				</p:column>
+				<p:column headerText="Categoria">
+					<p:selectOneMenu style="width:125px" value="#{receita.categoria}">
+						<f:selectItem itemLabel="" />
+						<f:selectItem itemLabel="Doces e Sobremesas"
+							itemValue="Doces e Sobremesas" />
+						<f:selectItem itemLabel="Carnes" itemValue="Carnes" />
+						<f:selectItem itemLabel="Aves" itemValue="Aves" />
+						<f:selectItem itemLabel="Frutos do Mar" itemValue="Frutos do Mar" />
+						<f:selectItem itemLabel="Saladas" itemValue="Saladas" />
+						<f:selectItem itemLabel="Molhos" itemValue="Molhos" />
+						<f:selectItem itemLabel="Sopas" itemValue="Sopas" />
+						<f:selectItem itemLabel="Massas" itemValue="Massas" />
+						<f:selectItem itemLabel="Lanches" itemValue="Lanches" />
+					</p:selectOneMenu>
+				</p:column>
+
+
+				<p:column headerText="Editar" width="15%">
+					<p:commandButton icon="pi pi-pencil">
+						<f:setPropertyActionListener target="#{ReceitaBean.id}"
+							value="#{receita.id}" /> />
+					</p:commandButton>
+				</p:column>
+				<p:column headerText="Remover" width="15%">
+					<p:commandButton icon="pi pi-times" updta="@form">
+						<f:setPropertyActionListener target="#{ReceitaBean.id}"
+							value="#{receita.id}" /> />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+		</p:panel>
+	</h:form>
+
+</h:body>
+</html>

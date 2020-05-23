@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets" >
+    
+   <ui:composition template="templatePrincipal.xhtml">
+
+   	<ui:define name="menu">
+   		<p:panelMenu>
+   			<p:submenu label="Lista da Feira">
+	   		<p:menuitem value="Listar Lista da Feira" action="ListarFeira.xhtml"/>
+	   		<p:menuitem value="Manter Lista" action="ManterFeira.xhtml" />
+	   		</p:submenu>
+   		</p:panelMenu>
+   	</ui:define>
+
+   	<ui:define name="conteudo">
+   		Lista da Feira
+        
+   	</ui:define>
+   </ui:composition>
+
+</html>

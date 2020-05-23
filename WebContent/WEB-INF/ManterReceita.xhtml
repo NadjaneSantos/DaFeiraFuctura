@@ -1,0 +1,122 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet library="css" name="file.css" />
+</h:head>
+<title>Receitaria</title>
+<h:body styleclass="body">
+
+	<h:form>
+		<p:graphicImage library="images" name="bgLogin.jpg" width="120"
+			margin-left="auto" margin-right="auto" />
+		<p:panel header="Receita">
+			<p:panelGrid style="width: 100%">
+
+
+				<h:outputLabel value="Título: " style="width:125px" />
+
+				<p:inputText value="#{ReceitaBean.receita.titulo}" />
+
+				<h:outputLabel value="Categoria: " />
+				<p:selectOneMenu style="width:125px"
+					value="#{ReceitaBean.receita.categoria}">
+					<f:selectItem itemLabel="" />
+					<f:selectItem itemLabel="Doces e Sobremesas"
+						itemValue="Doces e Sobremesas" />
+					<f:selectItem itemLabel="Carnes" itemValue="Carnes" />
+					<f:selectItem itemLabel="Aves" itemValue="Aves" />
+					<f:selectItem itemLabel="Frutos do Mar" itemValue="Frutos do Mar" />
+					<f:selectItem itemLabel="Saladas" itemValue="Saladas" />
+					<f:selectItem itemLabel="Molhos" itemValue="Molhos" />
+					<f:selectItem itemLabel="Sopas" itemValue="Sopas" />
+					<f:selectItem itemLabel="Massas" itemValue="Massas" />
+					<f:selectItem itemLabel="Lanches" itemValue="Lanches" />
+				</p:selectOneMenu>
+
+				<h:outputLabel value="Profissional: " style="width:125px" />
+				<p:inputText value="#{ReceitaBean.profissional.nome}" />
+
+				<h:outputLabel value="Matrícula: " style="width:125px" />
+				<p:inputText value="#{ReceitaBean.profissional.matricula}" />
+
+
+			</p:panelGrid>
+		</p:panel>
+
+		<p:layout style="min-width:600px;min-height:300px;">
+			<p:layoutUnit position="west" size="900" minSize="50" maxSize="800">
+
+
+				<p:panel header="Ingredientes">
+
+					<p:panelGrid columns="6">
+						<h:outputLabel value="Quantidade: " />
+						<p:inputText size="3"
+							value="#{ReceitaBean.ingrediente.quantidade}" />
+
+						<h:outputLabel value="Medida: " />
+						<p:selectOneMenu style="width:125px"
+							value="#{ReceitaBean.ingrediente.medida}">
+							<f:selectItem itemLabel="" />
+							<f:selectItem itemLabel="ml" itemValue="ml" />
+							<f:selectItem itemLabel="Gramas" itemValue="gramas" />
+							<f:selectItem itemLabel="Litro" itemValue="Litro" />
+							<f:selectItem itemLabel="Kilo" itemValue="kilo" />
+							<f:selectItem itemLabel="Colher de chá" itemValue="Colher de chá" />
+							<f:selectItem itemLabel="Colher de café"
+								itemValue="Colher de café" />
+							<f:selectItem itemLabel="Colher de Sopa"
+								itemValue="Colher de Sopa" />
+							<f:selectItem itemLabel="Xícara" itemValue="Xícara" />
+							<f:selectItem itemLabel="Unidade" itemValue="Unidades" />
+						</p:selectOneMenu>
+
+						<h:outputLabel value="Ingrediente: " />
+						<p:inputText size="10"
+							value="#{ReceitaBean.ingrediente.ingrediente}" />
+
+						<p:commandButton value="Adicionar" update="ingredientes"
+							actionListener="#{ReceitaBean.addIngrediente}" />
+
+					</p:panelGrid>
+					<p:dataTable id="ingredientes" var="ingrediente"
+						value="#{ReceitaBean.receita.listaIngrediente}">
+						<p:column headerText="Quantidade">
+							<h:outputText value="#{ingrediente.quantidade}" />
+						</p:column>
+						<p:column headerText="Medida">
+							<h:outputText value="#{ingrediente.medida}" />
+						</p:column>
+						<p:column headerText="Ingrediente">
+							<h:outputText value="#{ingrediente.ingrediente}" />
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+
+
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center">
+				<p:panel header="Modo de Preparo">
+					<p:inputTextarea rows="10" cols="50"
+						value="#{ReceitaBean.receita.modoPreparo}" />
+				</p:panel>
+			</p:layoutUnit>
+		</p:layout>
+
+		<p:column colspan="2">
+			<p:commandButton value="Salvar" update="@form"
+				actionListener="#{ReceitaBean.gravar}" />
+		</p:column>
+		<p:column>
+			<p:commandButton value="Limpar" update="@form"
+				style="margin-right:20px;" actionListener="#{ReceitaBean.limpar}" />
+		</p:column>
+
+	</h:form>
+
+</h:body>
+</html>
